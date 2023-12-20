@@ -1,7 +1,7 @@
 package io.github.blocksnmore.exnihilo.primio.commands;
 
 import io.github.blocksnmore.exnihilo.primio.shared.Items;
-import net.kyori.adventure.text.format.NamedTextColor;
+import io.github.blocksnmore.exnihilo.primio.utils.Color;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -21,17 +21,17 @@ public class Item extends Command {
     @Override
     public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
         if (sender instanceof ConsoleCommandSender) {
-            sender.sendMessage(NamedTextColor.RED + "This only works for players!");
+            sender.sendMessage(Color.applyColor("&rThis only works for players!"));
             return true;
         }
 
         if (!sender.hasPermission("primo.give")) {
-            sender.sendMessage(NamedTextColor.RED + "Missing Permissions");
+            sender.sendMessage(Color.applyColor("&rMissing Permissions!"));
             return true;
         }
 
         if (args.length < 1) {
-            sender.sendMessage(NamedTextColor.RED + "Missing item!");
+            sender.sendMessage(Color.applyColor("&rPlease provide an item!"));
             return true;
         }
 
@@ -41,7 +41,7 @@ public class Item extends Command {
             try {
                 amount = Integer.parseInt(args[1]);
             } catch (NumberFormatException e) {
-                sender.sendMessage(NamedTextColor.RED + "Invalid amount requested!");
+                sender.sendMessage(Color.applyColor("&rInvalid amount requested!"));
                 return true;
             }
         }
@@ -49,14 +49,14 @@ public class Item extends Command {
         HashMap<String, ItemStack> validItems = Items.items;
 
         if (!validItems.containsKey(args[0].toLowerCase())) {
-            sender.sendMessage(NamedTextColor.RED + "Unknown item!");
+            sender.sendMessage(Color.applyColor("&rUnknown item!"));
             return true;
         }
 
         ItemStack originalItem = validItems.get(args[0].toLowerCase());
 
         if (amount < 1 || amount > originalItem.getMaxStackSize()) {
-            sender.sendMessage(NamedTextColor.RED + "Your quantity must be between 1 and " + originalItem.getMaxStackSize());
+            sender.sendMessage(Color.applyColor("&rQuantity must be between 1 and " + originalItem.getMaxStackSize() + "!"));
         }
 
         Player player = (Player) sender;
@@ -65,7 +65,7 @@ public class Item extends Command {
 
         player.getInventory().addItem(item);
 
-        sender.sendMessage(NamedTextColor.AQUA + "Gave " + amount + " of " + args[0]);
+        sender.sendMessage(Color.applyColor("&bGave " + amount + " of " + args[0] + "!"));
 
         return true;
     }
