@@ -1,0 +1,6 @@
+name: ExNihiloPrimio
+version: '1.0.0'
+main: io.github.blocksnmore.exnihilo.primio.Primio
+api-version: 1.20
+authors: [ Bloxs ]
+description: A Back to the roots approach at Ex Nihilo
