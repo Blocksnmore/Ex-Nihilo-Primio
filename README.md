@@ -1,4 +1,6 @@
 # Ex Nihilo: Primio
+### THIS IS A WORK IN PROGRESS AND NOT DONE!
+
 A back to the roots implementation of the Ex Nihilo series
 made entirely in vanilla with only a resource pack
 

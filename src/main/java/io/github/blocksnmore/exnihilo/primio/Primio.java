@@ -68,6 +68,10 @@ public class Primio extends JavaPlugin {
                 base + ".items.uncraftable"
         ).scan()
         ) {
+
+            // TODO: !IMPORTANT! FIGURE OUT WHAT BROKE THIS
+            logger.info("Amount: " + result.getAllInterfaces().size());
+
             // Listeners
             for(Class<Listener> listenerClass : result.getClassesImplementing(Listener.class.getName()).loadClasses(Listener.class)) {
                 getServer().getPluginManager().registerEvents(listenerClass.getDeclaredConstructor().newInstance(), this);
@@ -90,6 +94,7 @@ public class Primio extends JavaPlugin {
                 ShapelessRecipe recipe = new ShapelessRecipe(new NamespacedKey(Primio.pluginNamespace, recipeInfo.namespaceName), recipeInfo.item);
 
                 for (ItemStack item : recipeInfo.recipeIngredients) {
+                    // TODO: Eventually add multi item support via RecipeChoices
                     recipe.addIngredient(new RecipeChoice.ExactChoice(item));
                 }
 
@@ -107,7 +112,11 @@ public class Primio extends JavaPlugin {
                 ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(Primio.pluginNamespace, recipeInfo.namespaceName), recipeInfo.item);
 
                 for (KeyedItem item : recipeInfo.recipeIngredients) {
-                    recipe.setIngredient(item.letter, item.item);
+                    if (item.item != null) {
+                        recipe.setIngredient(item.letter, item.item);
+                    } else {
+                        recipe.setIngredient(item.letter, item.choice);
+                    }
                 }
 
                 recipe.shape(recipeInfo.recipeShape);
