@@ -61,7 +61,7 @@ public class Primio extends JavaPlugin {
     public void loadListeners() {
         String base = "io.github.blocksnmore.exnihilo.primio";
 
-        try(ScanResult result = new ClassGraph().enableClassInfo().acceptPackages(
+        try(ScanResult result = new ClassGraph().acceptPackages(
                 base + ".listeners",
                 base + ".items.craftable",
                 // Only used for filling the items object
