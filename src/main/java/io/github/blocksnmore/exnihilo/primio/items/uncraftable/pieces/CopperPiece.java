@@ -1,7 +1,7 @@
 package io.github.blocksnmore.exnihilo.primio.items.uncraftable.pieces;
 
+import io.github.blocksnmore.exnihilo.primio.utils.Color;
 import io.github.blocksnmore.exnihilo.primio.utils.Craft;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -14,7 +14,7 @@ public class CopperPiece extends Craft {
 
         ItemMeta meta = this.item.getItemMeta();
         meta.setCustomModelData(this.customModelDataNumber);
-        meta.displayName(Component.text("Copper Piece"));
+        meta.displayName(Color.applyColor("&r&fCopper Piece"));
         this.item.setItemMeta(meta);
 
         this.namespaceName = "copper_piece";

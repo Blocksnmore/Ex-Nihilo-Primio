@@ -111,6 +111,8 @@ public class Primio extends JavaPlugin {
 
                 ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(Primio.pluginNamespace, recipeInfo.namespaceName), recipeInfo.item);
 
+                recipe.shape(recipeInfo.recipeShape);
+
                 for (KeyedItem item : recipeInfo.recipeIngredients) {
                     if (item.item != null) {
                         recipe.setIngredient(item.letter, item.item);
@@ -118,8 +120,6 @@ public class Primio extends JavaPlugin {
                         recipe.setIngredient(item.letter, item.choice);
                     }
                 }
-
-                recipe.shape(recipeInfo.recipeShape);
 
                 Items.items.put(recipeInfo.namespaceName, recipeInfo.item);
 
@@ -150,10 +150,10 @@ public class Primio extends JavaPlugin {
         getServer().updateRecipes();
 
         usedCommands.add(new Item(
-                "primo",
+                "primio",
                 "Give an Ex Nihilo: Primio item",
                 "/item <item>",
-                new ArrayList<>(Arrays.asList("primoitem", "item", "i", "pi"))
+                new ArrayList<>(Arrays.asList("primioitem", "item", "i", "pi"))
         ));
 
         for (Command command : usedCommands) {

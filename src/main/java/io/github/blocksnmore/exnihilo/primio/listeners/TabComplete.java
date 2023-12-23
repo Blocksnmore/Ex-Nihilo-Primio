@@ -20,7 +20,7 @@ public class TabComplete implements Listener {
             return;
         }
 
-        if (!cmd.getName().equals("primo")) {
+        if (!cmd.getName().equals("primio")) {
             return;
         }
 

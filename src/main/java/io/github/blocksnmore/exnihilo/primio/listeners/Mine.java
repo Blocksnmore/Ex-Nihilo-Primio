@@ -1,9 +1,12 @@
 package io.github.blocksnmore.exnihilo.primio.listeners;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.HashMap;
 
@@ -37,6 +40,21 @@ public class Mine implements Listener {
     @EventHandler
     public void onBreakEvent(BlockBreakEvent e) {
         if (!e.getBlock().getDrops().isEmpty()) return;
+        // TODO: This
+    }
+
+    @EventHandler
+    public void beforeBreakEvent(PlayerInteractEvent e) {
+        if (e.getAction() != Action.LEFT_CLICK_BLOCK) return;
+
+        Block block = e.getClickedBlock();
+
+        if (block == null) return;
+
+        if (block.getType() != Material.SPAWNER) return;
+
+        // TODO: This
+        e.getPlayer().sendMessage("Breaking");
 
     }
 }

@@ -1,8 +1,8 @@
 package io.github.blocksnmore.exnihilo.primio.items.craftable.shaped.hammers;
 
+import io.github.blocksnmore.exnihilo.primio.utils.Color;
 import io.github.blocksnmore.exnihilo.primio.utils.KeyedItem;
 import io.github.blocksnmore.exnihilo.primio.utils.ShapedCraft;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.inventory.ItemStack;
@@ -16,7 +16,7 @@ public class WoodenHammer extends ShapedCraft {
         this.namespaceName = "wooden_hammer";
 
         ItemMeta meta = this.item.getItemMeta();
-        meta.displayName(Component.text("Wooden Hammer"));
+        meta.displayName(Color.applyColor("&r&fWooden Hammer"));
         meta.setCustomModelData(this.customModelDataNumber);
 
         this.item.setItemMeta(meta);

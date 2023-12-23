@@ -5,6 +5,6 @@ import java.util.ArrayList;
 public class ShapedCraft extends Craft {
 
         public String[] recipeShape;
-        public ArrayList<KeyedItem> recipeIngredients;
+        public ArrayList<KeyedItem> recipeIngredients = new ArrayList<>();
 
 }
