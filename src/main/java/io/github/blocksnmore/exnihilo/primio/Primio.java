@@ -68,15 +68,6 @@ public class Primio extends JavaPlugin {
                 base + ".items.uncraftable"
         ).scan()
         ) {
-
-            // TODO: !IMPORTANT! FIGURE OUT WHAT BROKE THIS
-            logger.info("Amount: " + result.getAllInterfaces().size());
-
-            // Listeners
-            for(Class<Listener> listenerClass : result.getClassesImplementing(Listener.class.getName()).loadClasses(Listener.class)) {
-                getServer().getPluginManager().registerEvents(listenerClass.getDeclaredConstructor().newInstance(), this);
-            }
-
             // Items object filling
             for(Class<Craft> itemCraft : result.getSubclasses(Craft.class.getName()).loadClasses(Craft.class)) {
                 Craft item = itemCraft.getDeclaredConstructor().newInstance();
@@ -85,6 +76,11 @@ public class Primio extends JavaPlugin {
                 if (item.namespaceName == null) continue;
 
                 Items.items.put(item.namespaceName, item.item);
+            }
+
+            // Listeners
+            for(Class<Listener> listenerClass : result.getClassesImplementing(Listener.class.getName()).loadClasses(Listener.class)) {
+                getServer().getPluginManager().registerEvents(listenerClass.getDeclaredConstructor().newInstance(), this);
             }
 
             // Shapeless Crafts

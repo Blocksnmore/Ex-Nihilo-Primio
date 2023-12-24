@@ -29,6 +29,20 @@ public class TabComplete implements Listener {
             return;
         }
 
+        // TODO: Figure out a way to make this not continue emitting when you do say "/primio a    " as you put spaces
+        if (args.length == 2) {
+            ArrayList<String> values = new ArrayList<>();
+
+            for (String key : Items.items.keySet()) {
+                if (key.startsWith(args[1])) {
+                    values.add(key);
+                }
+            }
+
+            e.setCompletions(values);
+            return;
+        }
+
         e.setCompletions(new ArrayList<>());
     }
 }

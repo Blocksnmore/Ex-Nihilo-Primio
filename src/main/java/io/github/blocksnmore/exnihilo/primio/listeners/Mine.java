@@ -1,7 +1,9 @@
 package io.github.blocksnmore.exnihilo.primio.listeners;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.CreatureSpawner;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -46,6 +48,7 @@ public class Mine implements Listener {
     @EventHandler
     public void beforeBreakEvent(PlayerInteractEvent e) {
         if (e.getAction() != Action.LEFT_CLICK_BLOCK) return;
+        if (e.getPlayer().getGameMode() != GameMode.SURVIVAL) return;
 
         Block block = e.getClickedBlock();
 
@@ -54,6 +57,8 @@ public class Mine implements Listener {
         if (block.getType() != Material.SPAWNER) return;
 
         // TODO: This
+        CreatureSpawner state = (CreatureSpawner) block.getState();
+
         e.getPlayer().sendMessage("Breaking");
 
     }
